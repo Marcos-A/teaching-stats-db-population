@@ -148,17 +148,18 @@ def read_cf_students(input_file):
             enrolled_subjects = ','.join([key for key in student
                                           if 'mp' in key.lower() and
                                           student[key].lower() == 'x'])
+            degree = student['CICLE']
 
-            students += ((email, level, classgroup, enrolled_subjects,),)
+            students += ((email, level, classgroup, enrolled_subjects, degree,),)
 
         return students
 
 
 def insert_cf_students(students):
     sql = """
-             INSERT INTO forms_enrolledstudent(email, level,
-                                               classgroup, enrolled_subjects)
-             VALUES(%s, %s, %s, %s);
+             INSERT INTO forms_enrolledstudent(email, level, classgroup,
+                                               enrolled_subjects, degree_id)
+             VALUES(%s, %s, %s, %s, %s);
           """
     conn = None
     try:
