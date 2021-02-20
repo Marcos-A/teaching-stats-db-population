@@ -31,6 +31,8 @@ __pycache__/
 
 # Sensitive data
 database.ini
+database_elpuig.ini
+database_local.ini
 input/*
 
 # keep input folder

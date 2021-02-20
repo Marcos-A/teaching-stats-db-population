@@ -30,7 +30,7 @@ def read_degrees(input_file):
 
 def insert_degrees(degrees):
     sql = """
-             INSERT INTO forms_degree(short_name, full_name, department)
+             INSERT INTO forms_degree(short_name, long_name, department)
              VALUES(%s, %s, %s);
           """
     conn = None
@@ -55,6 +55,7 @@ def insert_degrees(degrees):
 
 def read_subjects(input_file):
     subjects = ()
+    evaluable_items = (('Centre',), ('Tutoria',),)
     with open(input_file, 'r', encoding='utf-8') as subjects_file:
         subjects_reader = csv.DictReader(subjects_file)
 
@@ -64,13 +65,41 @@ def read_subjects(input_file):
             degree = subject['Cicle']
 
             subjects += ((short_name, full_name, degree,),)
+            evaluable_items_list = [evaluable_item[0] for evaluable_item in evaluable_items]
+            if short_name not in evaluable_items_list:
+                evaluable_items += ((short_name,),)
 
-        return subjects
+        return subjects, evaluable_items
+
+
+def insert_evaluable_items(evaluable_items):
+    sql = """
+             INSERT INTO forms_evaluableitem(item)
+             VALUES(%s);
+          """
+    conn = None
+    try:
+        params = config()
+        print('Connecting to the PostgreSQL database...')
+
+        conn = psycopg2.connect(**params)
+        cursor = conn.cursor()
+
+        cursor.executemany(sql, evaluable_items)
+
+        cursor.close()
+        conn.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            print('Database connection closed.')
 
 
 def insert_subjects(subjects):
     sql = """
-             INSERT INTO forms_subjects(short_name, full_name, degree_id)
+             INSERT INTO forms_subject(short_name_id, long_name, degree_id)
              VALUES(%s, %s, %s);
           """
     conn = None
@@ -184,7 +213,8 @@ def insert_cf_students(students):
 if __name__ == '__main__':
     degrees = read_degrees(DEGREES_FILE)
     insert_degrees(degrees)
-    subjects = read_subjects(SUBJECTS_FILE)
+    subjects, evaluable_items = read_subjects(SUBJECTS_FILE)
+    insert_evaluable_items(evaluable_items)
     insert_subjects(subjects)
     eso_batx_students = read_ESOBatx_students(ESO_BATX_STUDENTS_FILE)
     insert_ESOBatx_students(eso_batx_students)
