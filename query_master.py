@@ -12,11 +12,11 @@ def get_degree_id(degree_code):
     conn = psycopg2.connect(**params)
     cursor = conn.cursor()
     cursor.execute(sql, (degree_code,))
-    degree_id = cursor.fetchone()
+    degree_id = cursor.fetchone()[0]
     cursor.close()
     conn.close()
 
-    return degree_id[0]
+    return degree_id
 
 
 def get_department_id(department_code):
@@ -29,11 +29,11 @@ def get_department_id(department_code):
     conn = psycopg2.connect(**params)
     cursor = conn.cursor()
     cursor.execute(sql, (department_code,))
-    department_id = cursor.fetchone()
+    department_id = cursor.fetchone()[0]
     cursor.close()
     conn.close()
 
-    return department_id[0]
+    return department_id
 
 
 def get_level_id(level_code):
@@ -46,11 +46,11 @@ def get_level_id(level_code):
     conn = psycopg2.connect(**params)
     cursor = conn.cursor()
     cursor.execute(sql, (level_code,))
-    level_id = cursor.fetchone()
+    level_id = cursor.fetchone()[0]
     cursor.close()
     conn.close()
 
-    return level_id[0]
+    return level_id
 
 
 def get_topic_id(topic_name):
@@ -63,11 +63,11 @@ def get_topic_id(topic_name):
     conn = psycopg2.connect(**params)
     cursor = conn.cursor()
     cursor.execute(sql, (topic_name,))
-    topic_id = cursor.fetchone()
+    topic_id = cursor.fetchone()[0]
     cursor.close()
     conn.close()
 
-    return topic_id[0]
+    return topic_id
 
 
 def get_type_id(type_name):
@@ -80,8 +80,8 @@ def get_type_id(type_name):
     conn = psycopg2.connect(**params)
     cursor = conn.cursor()
     cursor.execute(sql, (type_name,))
-    type_id = cursor.fetchone()
+    type_id = cursor.fetchone()[0]
     cursor.close()
     conn.close()
 
-    return type_id[0]
+    return type_id
