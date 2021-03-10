@@ -308,8 +308,10 @@ def insert_subjects(subject):
 
 
 def format_timestamp(timestamp):
-    if timestamp == '':
+	# Convert empty timestamp data to null value
+    if not timestamp:
         return None
+    # Convert timestamp string to timestampt with timezone object
     else:
         localtz = timezone('UTC')
         timestamp_without_tz = timestamp.split('+')[0]
