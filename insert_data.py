@@ -308,7 +308,7 @@ def insert_subjects(subject):
 
 
 def format_timestamp(timestamp):
-	# Convert empty timestamp data to null value
+    # Convert empty timestamp data to null value
     if not timestamp:
         return None
     # Convert timestamp string to timestampt with timezone object
