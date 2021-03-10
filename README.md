@@ -27,41 +27,7 @@ port=YOUR-PORT
 options=-c search_path=dbo,YOUR-SCHEMA
 ```
 
-3. Place your 4 data CSV files in the "input" folder following this pattern:
-
-cf_students.csv file
-
-```
-contains the into about CF students
-
-header: ALUMNE,CORREU,CICLE,GRUP,MP01,MP02,MP03,MP04,MP05,MP06,MP07,MP08,MP09,MP10,MP11,MP12,MP13,MP14,MP15
-
-MP columnes must contain 'X' to determine if the student is enrolled.
-```
-
-degrees.csv file
-
-``` 
-contains the into about the degrees
-
-header: Abreviatura,Nom,Família
-```
-
-eso-batx_students.csv file
-
-``` 
-contains the into about the ESO and Batxillerat students
-
-header: Adreça electrònica,Nom,Cognoms,Nivell,Grup
-```
-
-subjects.csv file
-
-``` 
-contains the into about the subjects
-
-header: MP,Nom,Cicle
-```
+3. Modify your 8 data input CSV files content according to your needs. Make sure to keep the headers.
 
 ---
 

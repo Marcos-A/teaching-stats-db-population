@@ -1,0 +1,78 @@
+id,code,name,degree_id,topic_id
+10,MP10,Gestió logística i comercial,1,1
+11,MP11,Simulació empresarial,1,1
+12,MP12,Formació i orientació laboral,1,1
+13,MP13,Projecte d’administració i finances,1,1
+23,MP10,Administració de sistemes gestors de bases de dades,3,1
+24,MP11,Seguretat i alta disponibilitat,3,1
+25,MP12,Formació i orientació laboral,3,1
+26,MP13,Empresa i iniciativa emprenedora,3,1
+27,MP14,Projecte d'administració de sistemes informàtics en xarxa,3,1
+37,MP10,Sistemes de gestió empresarial,4,1
+38,MP11,Formació i orientació laboral,4,1
+39,MP12,Empresa i iniciativa emprenedora,4,1
+40,MP13,Projecte de desenvolupament d'aplicacions multiplataforma,4,1
+65,Tutoria,Tutoria,5,2
+66,Centre,Centre,5,3
+67,Tutoria,Tutoria,3,2
+68,Tutoria,Tutoria,4,2
+69,Tutoria,Tutoria,1,2
+70,Tutoria,Tutoria,2,2
+71,Centre,Centre,3,3
+72,Centre,Centre,4,3
+73,Centre,Centre,1,3
+74,Centre,Centre,2,3
+1,MP01,Comunicació i atenció al client,1,1
+2,MP02,Gestió de la documentació jurídica i empresarial,1,1
+3,MP03,Procés integral de l'activitat comercial,1,1
+4,MP04,Recursos humans i responsabilitat social corporativa,1,1
+5,MP05,Ofimàtica i procés de la informació,1,1
+6,MP06,Anglès,1,1
+7,MP07,Gestió de recursos humans,1,1
+8,MP08,Gestió financera,1,1
+9,MP09,Comptabilitat i fiscalitat,1,1
+14,MP01,Sistemes informàtics,3,1
+15,MP02,Gestió de bases de dades,3,1
+16,MP03,Programació bàsica,3,1
+17,MP04,Llenguatges de marques i sistemes de gestió d'informació,3,1
+18,MP05,Fonaments de maquinari,3,1
+19,MP06,Administració de sistemes operatius,3,1
+20,MP07,Planificació i administració de xarxes,3,1
+21,MP08,Serveis de xarxa i internet,3,1
+22,MP09,Implantació d'aplicacions web,3,1
+28,MP01,Sistemes informàtics,4,1
+29,MP02,Bases de dades,4,1
+30,MP03,Programació,4,1
+31,MP04,Llenguatges de marques i sistemes de gestió d'informació,4,1
+32,MP05,Entorns de desenvolupament,4,1
+33,MP06,Accés a dades,4,1
+34,MP07,Desenvolupament d'interfícies,4,1
+35,MP08,Programació multimèdia i dispositius mòbils,4,1
+36,MP09,Programació de serveis i processos,4,1
+50,MP10,Empresa i administració,2,1
+51,MP11,Empresa a l'aula,2,1
+52,MP12,Formació i orientació laboral,2,1
+62,MP10,Empresa i iniciativa emprenedora,5,1
+63,MP11,Anglès tècnic,5,1
+64,MP12,Síntesi,5,1
+75,Tutoria,Tutoria,6,2
+76,Tutoria,Tutoria,7,2
+81,Centre,Centre,6,3
+41,MP01,Comunicació empresarial i atenció al client,2,1
+42,MP02,Operacions administratives de compravenda,2,1
+43,MP03,Operacions administratives de recursos humans,2,1
+44,MP04,Operacions auxiliars de gestió de la tresoreria,2,1
+45,MP05,Tècnica comptable,2,1
+46,MP06,Tractament de la documentació comptable,2,1
+47,MP07,Tractament informàtic de la informació,2,1
+48,MP08,Operacions administratives de suport,2,1
+49,MP09,Anglès,2,1
+53,MP01,Muntatge i manteniment d'equips,5,1
+54,MP02,Sistemes operatius monolloc,5,1
+55,MP03,Aplicacions ofimàtiques,5,1
+56,MP04,Sistemes operatius en xarxa,5,1
+57,MP05,Xarxes locals,5,1
+58,MP06,Seguretat informàtica,5,1
+59,MP07,Serveis de xarxa,5,1
+60,MP08,Aplicacions web,5,1
+61,MP09,Formació i orientació laboral,5,1

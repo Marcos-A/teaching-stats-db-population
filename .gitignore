@@ -33,13 +33,3 @@ __pycache__/
 database.ini
 database_elpuig.ini
 database_local.ini
-input/*
-
-# keep input folder
-!input/.gitkeep 
-
-# testing files
-insert_students.py
-test.py
-
-

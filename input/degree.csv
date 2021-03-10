@@ -1,0 +1,8 @@
+id,code,name,department_id,level_id
+1,AF,Administració i finances,1,3
+2,GA,Gestió administrativa,1,3
+3,ASIX,Administració de sistemes informàtics en xarxa,2,3
+4,DAM,Desenvolupament d'aplicacions multiplataforma,2,3
+5,SMX,Sistemes microinformàtics i xarxes,2,3
+6,ESO,ESO,3,1
+7,BTX,Batxillerat,4,2
