@@ -6,6 +6,7 @@ import psycopg2
 import sys
 from datetime import datetime
 from pytz import timezone
+from query_master import get_degree_id, get_department_id, get_level_id, get_topic_id, get_type_id
 
 
 sys.path.append(os.path.dirname(__file__))
@@ -26,19 +27,18 @@ def read_departments(input_file):
         departments_reader = csv.DictReader(departments_file)
 
         for department in departments_reader:
-            id =  department['id']
             code = department['code']
             name = department['name']
 
-            departments += ((id, code, name,),)
+            departments += ((code, name,),)
 
         return departments
 
 
 def insert_departments(departments):
     sql = """
-             INSERT INTO department(id, code, name)
-             VALUES(%s, %s, %s);
+             INSERT INTO department(code, name)
+             VALUES(%s, %s);
           """
     conn = None
     try:
@@ -61,19 +61,18 @@ def read_levels(input_file):
         levels_reader = csv.DictReader(levels_file)
 
         for level in levels_reader:
-            id =  level['id']
             name = level['name']
             code = level['code']
 
-            levels += ((id, name, code,),)
+            levels += ((name, code,),)
 
         return levels
 
 
 def insert_levels(levels):
     sql = """
-             INSERT INTO level(id, name, code)
-             VALUES(%s, %s, %s);
+             INSERT INTO level(name, code)
+             VALUES(%s, %s);
           """
     conn = None
     try:
@@ -96,21 +95,20 @@ def read_degrees(input_file):
         degrees_reader = csv.DictReader(degrees_file)
 
         for degree in degrees_reader:
-            id =  degree['id']
             code = degree['code']
             name = degree['name']
-            department_id = degree['department_id']
-            level_id = degree['level_id']
+            department_id = get_department_id(degree['department_code'])
+            level_id = get_level_id(degree['level_code'])
 
-            degrees += ((id, code, name, department_id, level_id,),)
+            degrees += ((code, name, department_id, level_id,),)
 
         return degrees
 
 
 def insert_degrees(degrees):
     sql = """
-             INSERT INTO degree(id, code, name, department_id, level_id)
-             VALUES(%s, %s, %s, %s, %s);
+             INSERT INTO degree(code, name, department_id, level_id)
+             VALUES(%s, %s, %s, %s);
           """
     conn = None
     try:
@@ -133,19 +131,18 @@ def read_groups(input_file):
         groups_reader = csv.DictReader(groups_file)
 
         for group in groups_reader:
-            id =  group['id']
             name = group['name']
-            degree_id = group['degree_id']
+            degree_id = get_degree_id(group['degree_code'])
 
-            groups += ((id, name, degree_id,),)
+            groups += ((name, degree_id,),)
 
         return groups
 
 
 def insert_groups(groups):
     sql = """
-             INSERT INTO "group"(id, name, degree_id)
-             VALUES(%s, %s, %s);
+             INSERT INTO "group"(name, degree_id)
+             VALUES(%s, %s);
           """
     conn = None
     try:
@@ -168,18 +165,17 @@ def read_topics(input_file):
         topics_reader = csv.DictReader(topics_file)
 
         for topic in topics_reader:
-            id =  topic['id']
             name = topic['name']
 
-            topics += ((id, name,),)
+            topics += ((name,),)
 
         return topics
 
 
 def insert_topics(topics):
     sql = """
-             INSERT INTO topic(id, name)
-             VALUES(%s, %s);
+             INSERT INTO topic(name)
+             VALUES(%s);
           """
     conn = None
     try:
@@ -202,18 +198,17 @@ def read_types(input_file):
         types_reader = csv.DictReader(types_file)
 
         for type in types_reader:
-            id =  type['id']
             name = type['name']
 
-            types += ((id, name,),)
+            types += ((name,),)
 
         return types
 
 
 def insert_types(types):
     sql = """
-             INSERT INTO type(id, name)
-             VALUES(%s, %s);
+             INSERT INTO type(name)
+             VALUES(%s);
           """
     conn = None
     try:
@@ -236,24 +231,23 @@ def read_questions(input_file):
         questions_reader = csv.DictReader(questions_file)
 
         for question in questions_reader:
-            id =  question['id']
             sort = question['sort']
             statement = question['statement']
             disabled = format_timestamp(question['disabled'])
-            type_id = question['type_id']
-            level_id = question['level_id']
-            topic_id = question['topic_id']
+            type_id = get_type_id(question['type_name'])
+            level_id = get_level_id(question['level_code'])
+            topic_id = get_topic_id(question['topic_name'])
             created = format_timestamp(question['created'])
 
-            questions += ((id, sort, statement, disabled, type_id, level_id, topic_id, created,),)
+            questions += ((sort, statement, disabled, type_id, level_id, topic_id, created,),)
 
         return questions
 
 
 def insert_questions(questions):
     sql = """
-             INSERT INTO question(id, sort, statement, disabled, type_id, level_id, topic_id, created)
-             VALUES(%s, %s, %s, %s, %s, %s, %s, %s);
+             INSERT INTO question(sort, statement, disabled, type_id, level_id, topic_id, created)
+             VALUES(%s, %s, %s, %s, %s, %s, %s);
           """
     conn = None
     try:
@@ -276,21 +270,20 @@ def read_subjects(input_file):
         subjects_reader = csv.DictReader(subjects_file)
 
         for subject in subjects_reader:
-            id =  subject['id']
             code = subject['code']
             name = subject['name']
-            degree_id = subject['degree_id']
-            topic_id = subject['topic_id']
+            degree_id = get_degree_id(subject['degree_code'])
+            topic_id = get_topic_id(subject['topic_name'])
 
-            subjects += ((id, code, name, degree_id, topic_id,),)
+            subjects += ((code, name, degree_id, topic_id,),)
 
         return subjects
 
 
 def insert_subjects(subject):
     sql = """
-             INSERT INTO subject(id, code, name, degree_id, topic_id)
-             VALUES(%s, %s, %s, %s, %s);
+             INSERT INTO subject(code, name, degree_id, topic_id)
+             VALUES(%s, %s, %s, %s);
           """
     conn = None
     try:
