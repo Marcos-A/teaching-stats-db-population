@@ -6,7 +6,7 @@ import psycopg2
 import sys
 from datetime import datetime
 from pytz import timezone
-from query_master import get_degree_id, get_department_id, get_level_id, get_topic_id, get_type_id
+from query_master import *
 
 
 sys.path.append(os.path.dirname(__file__))
@@ -49,7 +49,7 @@ def insert_departments(departments):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -83,7 +83,7 @@ def insert_levels(levels):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -119,7 +119,7 @@ def insert_degrees(degrees):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -153,7 +153,7 @@ def insert_groups(groups):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -186,7 +186,7 @@ def insert_topics(topics):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -219,7 +219,7 @@ def insert_types(types):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -258,7 +258,7 @@ def insert_questions(questions):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -294,7 +294,7 @@ def insert_subjects(subject):
         cursor.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        catch_exception(error)
     finally:
         if conn is not None:
             conn.close()
@@ -311,11 +311,6 @@ def format_timestamp(timestamp):
         datetime_format_timestamp = datetime.strptime(timestamp_without_tz, '%Y-%m-%d %H:%M:%S.%f')
         tz_aware_timestamp = localtz.localize(datetime_format_timestamp)
         return tz_aware_timestamp
-
-
-def catch_exception(e):    
-    print(str(e))    
-    sys.exit()
 
 
 def succeed():
