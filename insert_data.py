@@ -22,17 +22,20 @@ TYPE_FILE = 'input/type.csv'
     
 
 def read_departments(input_file):
-    departments = ()
-    with open(input_file, 'r', encoding='utf-8') as departments_file:
-        departments_reader = csv.DictReader(departments_file)
+    try:
+        departments = ()
+        with open(input_file, 'r', encoding='utf-8') as departments_file:
+            departments_reader = csv.DictReader(departments_file)
 
-        for department in departments_reader:
-            code = department['code']
-            name = department['name']
+            for department in departments_reader:
+                code = department['code']
+                name = department['name']
 
-            departments += ((code, name,),)
+                departments += ((code, name,),)
 
-        return departments
+            return departments
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_departments(departments):
@@ -48,6 +51,7 @@ def insert_departments(departments):
         cursor.executemany(sql, departments)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -56,17 +60,20 @@ def insert_departments(departments):
 
 
 def read_levels(input_file):
-    levels = ()
-    with open(input_file, 'r', encoding='utf-8') as levels_file:
-        levels_reader = csv.DictReader(levels_file)
+    try:
+        levels = ()
+        with open(input_file, 'r', encoding='utf-8') as levels_file:
+            levels_reader = csv.DictReader(levels_file)
 
-        for level in levels_reader:
-            name = level['name']
-            code = level['code']
+            for level in levels_reader:
+                name = level['name']
+                code = level['code']
 
-            levels += ((name, code,),)
+                levels += ((name, code,),)
 
-        return levels
+            return levels
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_levels(levels):
@@ -82,6 +89,7 @@ def insert_levels(levels):
         cursor.executemany(sql, levels)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -90,19 +98,22 @@ def insert_levels(levels):
 
 
 def read_degrees(input_file):
-    degrees = ()
-    with open(input_file, 'r', encoding='utf-8') as degrees_file:
-        degrees_reader = csv.DictReader(degrees_file)
+    try:
+        degrees = ()
+        with open(input_file, 'r', encoding='utf-8') as degrees_file:
+            degrees_reader = csv.DictReader(degrees_file)
 
-        for degree in degrees_reader:
-            code = degree['code']
-            name = degree['name']
-            department_id = get_department_id(degree['department_code'])
-            level_id = get_level_id(degree['level_code'])
+            for degree in degrees_reader:
+                code = degree['code']
+                name = degree['name']
+                department_id = get_department_id(degree['department_code'])
+                level_id = get_level_id(degree['level_code'])
 
-            degrees += ((code, name, department_id, level_id,),)
+                degrees += ((code, name, department_id, level_id,),)
 
-        return degrees
+            return degrees
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_degrees(degrees):
@@ -118,6 +129,7 @@ def insert_degrees(degrees):
         cursor.executemany(sql, degrees)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -126,17 +138,20 @@ def insert_degrees(degrees):
 
 
 def read_groups(input_file):
-    groups = ()
-    with open(input_file, 'r', encoding='utf-8') as groups_file:
-        groups_reader = csv.DictReader(groups_file)
+    try:
+        groups = ()
+        with open(input_file, 'r', encoding='utf-8') as groups_file:
+            groups_reader = csv.DictReader(groups_file)
 
-        for group in groups_reader:
-            name = group['name']
-            degree_id = get_degree_id(group['degree_code'])
+            for group in groups_reader:
+                name = group['name']
+                degree_id = get_degree_id(group['degree_code'])
 
-            groups += ((name, degree_id,),)
+                groups += ((name, degree_id,),)
 
-        return groups
+            return groups
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_groups(groups):
@@ -152,6 +167,7 @@ def insert_groups(groups):
         cursor.executemany(sql, groups)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -160,16 +176,19 @@ def insert_groups(groups):
 
 
 def read_topics(input_file):
-    topics = ()
-    with open(input_file, 'r', encoding='utf-8') as topics_file:
-        topics_reader = csv.DictReader(topics_file)
+    try:
+        topics = ()
+        with open(input_file, 'r', encoding='utf-8') as topics_file:
+            topics_reader = csv.DictReader(topics_file)
 
-        for topic in topics_reader:
-            name = topic['name']
+            for topic in topics_reader:
+                name = topic['name']
 
-            topics += ((name,),)
+                topics += ((name,),)
 
-        return topics
+            return topics
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_topics(topics):
@@ -185,6 +204,7 @@ def insert_topics(topics):
         cursor.executemany(sql, topics)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -193,16 +213,19 @@ def insert_topics(topics):
 
 
 def read_types(input_file):
-    types = ()
-    with open(input_file, 'r', encoding='utf-8') as types_file:
-        types_reader = csv.DictReader(types_file)
+    try:
+        types = ()
+        with open(input_file, 'r', encoding='utf-8') as types_file:
+            types_reader = csv.DictReader(types_file)
 
-        for type in types_reader:
-            name = type['name']
+            for type in types_reader:
+                name = type['name']
 
-            types += ((name,),)
+                types += ((name,),)
 
-        return types
+            return types
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_types(types):
@@ -218,6 +241,7 @@ def insert_types(types):
         cursor.executemany(sql, types)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -226,22 +250,25 @@ def insert_types(types):
 
 
 def read_questions(input_file):
-    questions = ()
-    with open(input_file, 'r', encoding='utf-8') as questions_file:
-        questions_reader = csv.DictReader(questions_file)
+    try:
+        questions = ()
+        with open(input_file, 'r', encoding='utf-8') as questions_file:
+            questions_reader = csv.DictReader(questions_file)
 
-        for question in questions_reader:
-            sort = question['sort']
-            statement = question['statement']
-            disabled = format_timestamp(question['disabled'])
-            type_id = get_type_id(question['type_name'])
-            level_id = get_level_id(question['level_code'])
-            topic_id = get_topic_id(question['topic_name'])
-            created = format_timestamp(question['created'])
+            for question in questions_reader:
+                sort = question['sort']
+                statement = question['statement']
+                disabled = format_timestamp(question['disabled'])
+                type_id = get_type_id(question['type_name'])
+                level_id = get_level_id(question['level_code'])
+                topic_id = get_topic_id(question['topic_name'])
+                created = format_timestamp(question['created'])
 
-            questions += ((sort, statement, disabled, type_id, level_id, topic_id, created,),)
+                questions += ((sort, statement, disabled, type_id, level_id, topic_id, created,),)
 
-        return questions
+            return questions
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_questions(questions):
@@ -257,6 +284,7 @@ def insert_questions(questions):
         cursor.executemany(sql, questions)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -265,19 +293,22 @@ def insert_questions(questions):
 
 
 def read_subjects(input_file):
-    subjects = ()
-    with open(input_file, 'r', encoding='utf-8') as subjects_file:
-        subjects_reader = csv.DictReader(subjects_file)
+    try:
+        subjects = ()
+        with open(input_file, 'r', encoding='utf-8') as subjects_file:
+            subjects_reader = csv.DictReader(subjects_file)
 
-        for subject in subjects_reader:
-            code = subject['code']
-            name = subject['name']
-            degree_id = get_degree_id(subject['degree_code'])
-            topic_id = get_topic_id(subject['topic_name'])
+            for subject in subjects_reader:
+                code = subject['code']
+                name = subject['name']
+                degree_id = get_degree_id(subject['degree_code'])
+                topic_id = get_topic_id(subject['topic_name'])
 
-            subjects += ((code, name, degree_id, topic_id,),)
+                subjects += ((code, name, degree_id, topic_id,),)
 
-        return subjects
+            return subjects
+    except Exception as e:
+        catch_exception(e)
 
 
 def insert_subjects(subject):
@@ -293,6 +324,7 @@ def insert_subjects(subject):
         cursor.executemany(sql, subject)
         cursor.close()
         conn.commit()
+        succeed()
     except (Exception, psycopg2.DatabaseError) as error:
         catch_exception(error)
     finally:
@@ -313,71 +345,35 @@ def format_timestamp(timestamp):
         return tz_aware_timestamp
 
 
-def succeed():
-    print('\033[92m' + 'OK' + '\033[0m')
-
-
 if __name__ == '__main__':
     print("\u200a\u200aInserting departments data...", end=" ")
-    try:
-        departments = read_departments(DEPARTMENT_FILE)
-        insert_departments(departments)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    departments = read_departments(DEPARTMENT_FILE)
+    insert_departments(departments)
 
     print("\u200a\u200aInserting levels data...", end=" ")
-    try:
-        levels = read_levels(LEVEL_FILE)
-        insert_levels(levels)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    levels = read_levels(LEVEL_FILE)
+    insert_levels(levels)
 
     print("\u200a\u200aInserting degrees data...", end=" ")
-    try:
-        degrees = read_degrees(DEGREE_FILE)
-        insert_degrees(degrees)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    degrees = read_degrees(DEGREE_FILE)
+    insert_degrees(degrees)
 
     print("\u200a\u200aInserting groups data...", end=" ")
-    try:
-        groups = read_groups(GROUP_FILE)
-        insert_groups(groups)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    groups = read_groups(GROUP_FILE)
+    insert_groups(groups)
 
     print("\u200a\u200aInserting topics data...", end=" ")
-    try:
-        topics = read_topics(TOPIC_FILE)
-        insert_topics(topics)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    topics = read_topics(TOPIC_FILE)
+    insert_topics(topics)
 
     print("\u200a\u200aInserting types data...", end=" ")
-    try:
-        types = read_types(TYPE_FILE)
-        insert_types(types)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    types = read_types(TYPE_FILE)
+    insert_types(types)
 
     print("\u200a\u200aInserting questions data...", end=" ")
-    try:
-        questions = read_questions(QUESTION_FILE)
-        insert_questions(questions)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    questions = read_questions(QUESTION_FILE)
+    insert_questions(questions)
 
     print("\u200a\u200aInserting subjects data...", end=" ")
-    try:
-        subjects = read_subjects(SUBJECT_FILE)
-        insert_subjects(subjects)
-        succeed()
-    except Exception as e:
-        catch_exception(e)
+    subjects = read_subjects(SUBJECT_FILE)
+    insert_subjects(subjects)
