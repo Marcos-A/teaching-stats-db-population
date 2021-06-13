@@ -1,7 +1,7 @@
 # school-form-db-population
 Populates the school-form database prior to submitting the form to the students to be answered.
 
-Designed as a helper to set up: [https://github.com/Marcos-A/teaching-stats](https://github.com/Marcos-A/teaching-stats)
+Designed as a helper to set up: [https://github.com/Marcos-A/teaching-stats](https://github.com/Marcos-A/teaching-stats).
 
 ---
 
